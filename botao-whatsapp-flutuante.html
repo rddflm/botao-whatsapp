@@ -5,13 +5,15 @@
   <title>Botão WhatsApp Flutuante</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    * {
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
       box-sizing: border-box;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+    *, *:before, *:after {
+      box-sizing: inherit;
     }
 
     #whatsapp-button {
@@ -65,7 +67,7 @@
       font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      transition: border-color 0.2s ease;
+      display: block;
     }
 
     #whatsapp-form input:focus,
