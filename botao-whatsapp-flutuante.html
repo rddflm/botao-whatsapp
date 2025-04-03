@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Botão WhatsApp Flutuante</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 9999999;
+    }
+    #whatsapp-button img {
+      width: 60%;
+      margin-top: 10px;
+    }
+    #whatsapp-form {
+      display: none;
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      width: 320px;
+      max-width: 95%;
+      z-index: 9999999;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      font-family: sans-serif;
+    }
+    #whatsapp-form h3 {
+      background-color: #2d4f76;
+      color: white;
+      padding: 10px;
+      border-radius: 8px 8px 0 0;
+      font-size: 14px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    #whatsapp-form input,
+    #whatsapp-form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    #whatsapp-form button {
+      background-color: #f7b500;
+      color: black;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    @media screen and (max-width: 480px) {
+      #whatsapp-button {
+        width: 50px;
+        height: 50px;
+      }
+      #whatsapp-button img {
+        width: 55%;
+        margin-top: 9px;
+      }
+      #whatsapp-form {
+        right: 10px;
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="whatsapp-button">
+    <img src="https://i.postimg.cc/SsK5Dc7r/image.png" alt="WhatsApp">
+  </div>
+
+  <div id="whatsapp-form">
+    <h3>Olá! Preencha os dados para iniciar a conversa no WhatsApp</h3>
+    <input type="text" id="nome" placeholder="Nome *" required>
+    <input type="email" id="email" placeholder="Email *" required>
+    <input type="tel" id="telefone" placeholder="Telefone *" required>
+    <select id="assunto" required>
+      <option value="">Escolha o assunto</option>
+      <option value="Máquinas">Máquinas</option>
+      <option value="Peças">Peças</option>
+      <option value="Serviços">Serviços</option>
+    </select>
+    <button id="enviarWhatsApp">INICIAR A CONVERSA</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const button = document.getElementById("whatsapp-button");
+      const form = document.getElementById("whatsapp-form");
+      const enviar = document.getElementById("enviarWhatsApp");
+
+      button.addEventListener("click", function () {
+        form.style.display = form.style.display === "block" ? "none" : "block";
+      });
+
+      enviar.addEventListener("click", function () {
+        const nome = document.getElementById("nome").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const telefone = document.getElementById("telefone").value.trim();
+        const assunto = document.getElementById("assunto").value;
+
+        if (!nome || !email || !telefone || !assunto) {
+          alert("Por favor, preencha todos os campos.");
+          return;
+        }
+
+        const mensagem = `Olá! Meu nome é ${nome}, meu e-mail é ${email}, meu telefone é ${telefone}, e estou entrando em contato sobre: ${assunto}.`;
+        const url = `https://wa.me/5511972615522?text=${encodeURIComponent(mensagem)}`;
+        window.open(url, '_blank');
+      });
+    });
+  </script>
+</body>
+</html>
