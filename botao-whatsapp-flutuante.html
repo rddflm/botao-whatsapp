@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,6 +5,15 @@
   <title>Botão WhatsApp Flutuante</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
     #whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -19,63 +27,71 @@
       cursor: pointer;
       z-index: 9999999;
     }
+
     #whatsapp-button img {
       width: 60%;
       margin-top: 10px;
     }
+
     #whatsapp-form {
-      display: none;
       position: fixed;
       bottom: 100px;
       right: 20px;
       background: white;
       border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 15px;
-      width: 320px;
+      border-radius: 12px;
+      padding: 20px;
+      width: 350px;
       max-width: 95%;
       z-index: 9999999;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      font-family: sans-serif;
     }
+
     #whatsapp-form h3 {
       background-color: #2d4f76;
       color: white;
-      padding: 10px;
-      border-radius: 8px 8px 0 0;
-      font-size: 14px;
-      margin-bottom: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 15px;
+      margin: 0 0 20px 0;
       text-align: center;
     }
+
     #whatsapp-form input,
     #whatsapp-form select {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 12px;
+      padding: 12px 10px;
+      margin-bottom: 15px;
       font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 6px;
+      transition: border-color 0.2s ease;
     }
+
+    #whatsapp-form input:focus,
+    #whatsapp-form select:focus {
+      border-color: #2d4f76;
+      outline: none;
+    }
+
     #whatsapp-form button {
       background-color: #f7b500;
       color: black;
       border: none;
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       font-weight: bold;
       cursor: pointer;
       border-radius: 6px;
-      font-size: 14px;
+      font-size: 15px;
+      transition: background-color 0.2s ease;
     }
+
+    #whatsapp-form button:hover {
+      background-color: #e5a700;
+    }
+
     @media screen and (max-width: 480px) {
-      #whatsapp-button {
-        width: 50px;
-        height: 50px;
-      }
-      #whatsapp-button img {
-        width: 55%;
-        margin-top: 9px;
-      }
       #whatsapp-form {
         right: 10px;
         width: 90%;
@@ -84,11 +100,7 @@
   </style>
 </head>
 <body>
-  <div id="whatsapp-button">
-    <img src="https://i.postimg.cc/SsK5Dc7r/image.png" alt="WhatsApp">
-  </div>
-
-  <div id="whatsapp-form">
+  <div id="whatsapp-form" style="display: none;">
     <h3>Olá! Preencha os dados para iniciar a conversa no WhatsApp</h3>
     <input type="text" id="nome" placeholder="Nome *" required>
     <input type="email" id="email" placeholder="Email *" required>
@@ -100,6 +112,10 @@
       <option value="Serviços">Serviços</option>
     </select>
     <button id="enviarWhatsApp">INICIAR A CONVERSA</button>
+  </div>
+
+  <div id="whatsapp-button">
+    <img src="https://i.postimg.cc/SsK5Dc7r/image.png" alt="WhatsApp">
   </div>
 
   <script>
